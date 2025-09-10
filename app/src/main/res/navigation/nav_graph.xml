@@ -22,6 +22,6 @@
         <argument
             android:name="COFFEE_NAME_KEY"
             app:argType="string"
-            android:defaultValue="No Coffee" />
+            android:defaultValue="No Coffee"  />
     </fragment>
 </navigation>

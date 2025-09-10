@@ -57,7 +57,7 @@ class DetailFragment : Fragment() {
             "Latte" -> "Caffè latte adalah minuman kopi yang terbuat dari espresso dan susu kukus. Umumnya memiliki lapisan busa susu tipis di atasnya."
             "Cappuccino" -> "Cappuccino adalah minuman kopi berbasis espresso asal Italia yang secara tradisional disiapkan dengan busa susu kukus (microfoam). Variasi minuman ini biasanya terdiri dari espresso, susu panas, dan busa susu kukus."
             "Espresso" -> "Espresso adalah minuman kopi pekat yang diseduh dengan memaksa sejumlah kecil air hampir mendidih di bawah tekanan melalui biji kopi yang digiling halus."
-            else -> "Deskripsi tidak tersedia."
+            else -> "Deskripsi tidak tersedia"
         }
     }
 

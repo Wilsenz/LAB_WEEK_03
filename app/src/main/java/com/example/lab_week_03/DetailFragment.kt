@@ -52,7 +52,7 @@ class DetailFragment : Fragment() {
     // Fungsi untuk mendapatkan deskripsi kopi
     private fun getCoffeeDescription(name: String?): String {
         return when (name) {
-            "Affogato" -> "Affogato adalah hidangan penutup Italia berbasis kopi. Biasanya terdiri dari satu sendok es krim vanila yang 'ditenggelamkan' atau disiram dengan satu shot espresso panas."
+            "Affogato" -> "Affogato adalah hidangan penutup Italia berbasis kopi. Biasanya terdiri dari satu sendok es krim vanila yang 'ditenggelamkan' atau disiram dengan satu shot espresso panas"
             "Americano" -> "Caffè Americano adalah jenis minuman kopi yang dibuat dengan menyeduh espresso dengan tambahan air panas, memberikan kekuatan serupa, tetapi rasa berbeda dari kopi seduh biasa."
             "Latte" -> "Caffè latte adalah minuman kopi yang terbuat dari espresso dan susu kukus. Umumnya memiliki lapisan busa susu tipis di atasnya."
             "Cappuccino" -> "Cappuccino adalah minuman kopi berbasis espresso asal Italia yang secara tradisional disiapkan dengan busa susu kukus (microfoam). Variasi minuman ini biasanya terdiri dari espresso, susu panas, dan busa susu kukus."

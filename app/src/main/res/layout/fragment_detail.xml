@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="16dp"
     tools:context=".DetailFragment">
+
     <TextView
-        android:id="@+id/coffee_title"
-        android:layout_width="match_parent"
+        android:id="@+id/coffee_name_text_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:text="Nama Kopi"
+        android:textSize="28sp"
         android:textStyle="bold"
-        tools:text="@string/affogato_title"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginVertical="20dp"
-        android:background="?android:attr/dividerVertical" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/coffee_desc"
-        android:layout_width="match_parent"
+        android:id="@+id/coffee_description_text_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:text="@string/affogato_desc" />
-</LinearLayout>
+        android:layout_marginTop="16dp"
+        android:text="Deskripsi kopi akan muncul di sini."
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coffee_name_text_view" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Kembali ke Daftar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coffee_description_text_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

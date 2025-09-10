@@ -5,34 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
 
-    private val coffeeTitle: TextView?
-        get() = view?.findViewById(R.id.coffee_title)
-    private val coffeeDesc: TextView?
-        get() = view?.findViewById(R.id.coffee_desc)
-
+    private var coffeeName: String? = null
+    private var coffeeDescription: String? = null // Variabel untuk menyimpan deskripsi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            coffeeName = it.getString("COFFEE_NAME_KEY") // Key dari ListFragment
+
+            // Menentukan deskripsi berdasarkan nama kopi
+            coffeeDescription = getCoffeeDescription(coffeeName)
         }
     }
 
@@ -40,41 +28,46 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        val view = inflater.inflate(R.layout.fragment_detail, container, false)
+
+        val coffeeNameTextView: TextView = view.findViewById(R.id.coffee_name_text_view) // Ubah ID jika perlu
+        val coffeeDescriptionTextView: TextView = view.findViewById(R.id.coffee_description_text_view) // TextView baru untuk deskripsi
+        val backButton: Button = view.findViewById(R.id.back_button)
+
+        coffeeName?.let {
+            coffeeNameTextView.text = it
+        }
+
+        coffeeDescription?.let {
+            coffeeDescriptionTextView.text = it
+        }
+
+        backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
-        setCoffeeData(coffeeId)
-    }
-
-    fun setCoffeeData(id: Int) {
-        when (id) {
-            R.id.affogato -> {
-                coffeeTitle?.text = getString(R.string.affogato_title)
-                coffeeDesc?.text = getString(R.string.affogato_desc)
-            }
-
-            R.id.americano -> {
-                coffeeTitle?.text = getString(R.string.americano_title)
-                coffeeDesc?.text = getString(R.string.americano_desc)
-            }
-
-            R.id.latte -> {
-                coffeeTitle?.text = getString(R.string.latte_title)
-                coffeeDesc?.text = getString(R.string.latte_desc)
-            }
+    // Fungsi untuk mendapatkan deskripsi kopi
+    private fun getCoffeeDescription(name: String?): String {
+        return when (name) {
+            "Affogato" -> "Affogato adalah hidangan penutup Italia berbasis kopi. Biasanya terdiri dari satu sendok es krim vanila yang 'ditenggelamkan' atau disiram dengan satu shot espresso panas."
+            "Americano" -> "Caffè Americano adalah jenis minuman kopi yang dibuat dengan menyeduh espresso dengan tambahan air panas, memberikan kekuatan serupa, tetapi rasa berbeda dari kopi seduh biasa."
+            "Latte" -> "Caffè latte adalah minuman kopi yang terbuat dari espresso dan susu kukus. Umumnya memiliki lapisan busa susu tipis di atasnya."
+            "Cappuccino" -> "Cappuccino adalah minuman kopi berbasis espresso asal Italia yang secara tradisional disiapkan dengan busa susu kukus (microfoam). Variasi minuman ini biasanya terdiri dari espresso, susu panas, dan busa susu kukus."
+            "Espresso" -> "Espresso adalah minuman kopi pekat yang diseduh dengan memaksa sejumlah kecil air hampir mendidih di bawah tekanan melalui biji kopi yang digiling halus."
+            else -> "Deskripsi tidak tersedia."
         }
     }
 
     companion object {
-        private const val COFFEE_ID = "COFFEE_ID"
-        fun newInstance(coffeeId: Int) =
+        // newInstance method bisa tetap sama atau disesuaikan jika perlu
+        @JvmStatic
+        fun newInstance(coffeeName: String) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(COFFEE_ID, coffeeId)
+                    putString("COFFEE_NAME_KEY", coffeeName)
                 }
             }
     }
